@@ -11,12 +11,34 @@ class App extends Component {
     };
 
     this.digitHandler = this.digitHandler.bind(this);
+    this.opHandler = this.opHandler.bind(this);
   }
 
   digitHandler(e) {
     let value = e.target.value;
     let display = this.state.display;
     display += (display.length < 23) ? value : "";
+    this.setState({
+      "display": display
+    });
+  }
+
+  opHandler(e) {
+    let value = e.target.value;
+    let display = this.state.display;
+    switch (value) {
+      case "ac":
+        display = "";
+        break;
+      case "c":
+        display = "";
+        break;
+      case ".":
+        display += (display.indexOf('.') === -1) ? "." : "";
+        break;
+      default:
+        break;
+    }
     this.setState({
       "display": display
     });
@@ -34,16 +56,16 @@ class App extends Component {
           </div>
 
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="all-clear mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> AC </button>
+            <button className="all-clear mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onClick={ this.opHandler } value="ac"> AC </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="clear mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> C </button>
+            <button className="clear mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onClick={ this.opHandler } value="c"> C </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="mem-plus mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> M+ </button>
+            <button className="mem-plus mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onClick={ this.opHandler } value="m+"> M+ </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="mem-result mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> MR </button>
+            <button className="mem-result mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onClick={ this.opHandler } value="mr"> MR </button>
           </div>
 
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
@@ -56,7 +78,7 @@ class App extends Component {
             <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="9"> 9 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="operator mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> / </button>
+            <button className="operator mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onClick={ this.opHandler } value="/"> / </button>
           </div>
 
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
@@ -69,7 +91,7 @@ class App extends Component {
             <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="6"> 6 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="operator mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> * </button>
+            <button className="operator mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onClick={ this.opHandler } value="*"> * </button>
           </div>
 
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
@@ -82,20 +104,20 @@ class App extends Component {
             <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="3"> 3 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="operator mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> - </button>
+            <button className="operator mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onClick={ this.opHandler } value="-"> - </button>
           </div>
 
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
             <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="0"> 0 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="point mdl-button mdl-js-button mdl-button--fab"> . </button>
+            <button className="point mdl-button mdl-js-button mdl-button--fab" onClick={ this.opHandler } value="."> . </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="equal mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> = </button>
+            <button className="equal mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onClick={ this.opHandler } value="="> = </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="operator mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> + </button>
+            <button className="operator mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onClick={ this.opHandler } value="+"> + </button>
           </div>
         </div>
       </div>

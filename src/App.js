@@ -3,6 +3,25 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      "display": ""
+    };
+
+    this.digitHandler = this.digitHandler.bind(this);
+  }
+
+  digitHandler(e) {
+    let value = e.target.value;
+    let display = this.state.display;
+    display += (display.length < 23) ? value : "";
+    this.setState({
+      "display": display
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -11,7 +30,7 @@ class App extends Component {
         </div>
         <div className="keys mdl-grid">
           <div className="display mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col">
-            <h4>0</h4>
+            <h4>{ this.state.display || "0" }</h4>
           </div>
 
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
@@ -28,46 +47,46 @@ class App extends Component {
           </div>
 
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="digit mdl-button mdl-js-button mdl-button--fab"> 7 </button>
+            <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="7"> 7 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="digit mdl-button mdl-js-button mdl-button--fab"> 8 </button>
+            <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="8"> 8 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="digit mdl-button mdl-js-button mdl-button--fab"> 9 </button>
+            <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="9"> 9 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
             <button className="operator mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> / </button>
           </div>
 
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="digit mdl-button mdl-js-button mdl-button--fab"> 4 </button>
+            <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="4"> 4 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="digit mdl-button mdl-js-button mdl-button--fab"> 5 </button>
+            <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="5"> 5 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="digit mdl-button mdl-js-button mdl-button--fab"> 6 </button>
+            <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="6"> 6 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
             <button className="operator mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> * </button>
           </div>
 
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="digit mdl-button mdl-js-button mdl-button--fab"> 1 </button>
+            <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="1"> 1 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="digit mdl-button mdl-js-button mdl-button--fab"> 2 </button>
+            <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="2"> 2 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="digit mdl-button mdl-js-button mdl-button--fab"> 3 </button>
+            <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="3"> 3 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
             <button className="operator mdl-button mdl-js-button mdl-button--fab mdl-button--colored"> - </button>
           </div>
 
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
-            <button className="digit mdl-button mdl-js-button mdl-button--fab"> 0 </button>
+            <button className="digit mdl-button mdl-js-button mdl-button--fab" onClick={ this.digitHandler } value="0"> 0 </button>
           </div>
           <div className="mdl-cell mdl-cell--1-col-phone mdl-cell--2-col-tablet mdl-cell--3-col">
             <button className="point mdl-button mdl-js-button mdl-button--fab"> . </button>

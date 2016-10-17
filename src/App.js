@@ -7,7 +7,10 @@ class App extends Component {
     super(props);
 
     this.state = {
-      "display": ""
+      "op": "",
+      "display": "",
+      "input": "",
+      "result": 0
     };
 
     this.digitHandler = this.digitHandler.bind(this);
@@ -16,31 +19,86 @@ class App extends Component {
 
   digitHandler(e) {
     let value = e.target.value;
-    let display = this.state.display;
-    display += (display.length < 23) ? value : "";
+    let input = this.state.input;
+    input += (input.length < 23) ? value : "";
+    let display = input;
     this.setState({
-      "display": display
+      "display": display,
+      "input": input
     });
   }
 
   opHandler(e) {
-    let value = e.target.value;
+    let op = e.target.value;
+    let prevOp = this.state.op;
+    let input = this.state.input;
     let display = this.state.display;
-    switch (value) {
+    let result = this.state.result;
+    switch (op) {
       case "ac":
-        display = "";
+        result = 0;
+        input = "";
+        display = input;
+        op = "";
         break;
       case "c":
-        display = "";
+        result = 0;
+        input = "";
+        display = input;
         break;
       case ".":
-        display += (display.indexOf('.') === -1) ? "." : "";
+        input += (input.indexOf('.') === -1) ? "." : "";
+        display = input;
+        break;
+      case "+":
+        result = (prevOp === "") ? 1 * input : result + 1 * input;
+        input = "";
+        display = result;
+        break;
+      case "-":
+        result = (prevOp === "") ? 1 * input : result - input;
+        input = "";
+        display = result;
+        break;
+      case "*":
+        result = (prevOp === "") ? 1 * input : (prevOp !== "" ? result : result * input);
+        input = "";
+        display = result;
+        break;
+      case "/":
+        result = (prevOp === "") ? 1 * input : (prevOp !== "" ? result : result / input);
+        input = "";
+        display = result;
+        break;
+      case "=":
+        switch (prevOp) {
+          case "+":
+            result += 1 * input;
+            break;
+          case "-":
+            result -= 1 * input;
+            break;
+          case "*":
+            result *= 1 * input;
+            break;
+          case "/":
+            result /= 1 * input;
+            break;
+          default:
+            break;
+        }
+        input = result;
+        display = result;
+        op = "";
         break;
       default:
         break;
     }
     this.setState({
-      "display": display
+      "op": op,
+      "display": display,
+      "input": input,
+      "result": result
     });
   }
 
